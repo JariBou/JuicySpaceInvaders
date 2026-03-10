@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] Vector3 startVelocity;
+    [SerializeField] protected Vector3 startVelocity;
     [SerializeField] private string destroyCollider;
+    protected Rigidbody2D _rb;
 
     // Start is called before the first frame update
     void Awake()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = startVelocity;
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.linearVelocity = startVelocity;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

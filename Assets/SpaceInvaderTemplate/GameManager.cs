@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 [DefaultExecutionOrder(-100)]
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     private Bounds Bounds => new Bounds(transform.position, new Vector3(bounds.x, bounds.y, 1000f));
 
     [SerializeField] private float gameOverHeight;
+
+    public List<Invader> invadersList = new List<Invader>();
 
     void Awake()
     {
@@ -66,6 +70,23 @@ public class GameManager : MonoBehaviour
     public bool IsBelowGameOver(float position)
     {        
         return position < transform.position.y + (gameOverHeight - bounds.y * 0.5f);
+    }
+
+
+    /// <summary>
+    /// Gives bound corners coordinate in order (index) : (0)bottom-left, (1)top-left, (2)bottom-right, (3)top-right
+    /// </summary>
+    /// <returns></returns>
+    public Vector2[] GetBoundCornersPositions()
+    {
+        Vector2[] boundCorners = new Vector2[4];
+
+        boundCorners[0] = new Vector2(Bounds.min.x, Bounds.min.y);
+        boundCorners[1] = new Vector2(Bounds.min.x, Bounds.max.y);
+        boundCorners[2] = new Vector2(Bounds.max.x, Bounds.min.y);
+        boundCorners[3] = new Vector2(Bounds.max.x, Bounds.max.x);
+
+        return boundCorners;
     }
 
     public void PlayGameOver()

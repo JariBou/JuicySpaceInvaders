@@ -73,7 +73,8 @@ public class Wave : MonoBehaviour
                 invaderPerRow[j].invaders.Add(invader);
             }
         }
-        
+
+        GameManager.Instance.invadersList = invaders; 
     }
 
     void Update()

@@ -261,7 +261,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadzone: 0.2
   speed: 4
-  bulletPrefab: {fileID: 7369880722360228486, guid: 42269f87d33f3eb4898473401db125ae, type: 3}
+  bulletPrefabList:
+  - {fileID: -5665347396053136586, guid: c34d79c4b954a7d47b8dbf54774f76a9, type: 3}
   shootAt: {fileID: 495127406}
   shootCooldown: 0.3
   collideWithTag: Untagged

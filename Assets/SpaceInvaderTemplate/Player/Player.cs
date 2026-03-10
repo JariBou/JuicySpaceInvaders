@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float deadzone = 0.3f;
     [SerializeField] private float speed = 1f;
 
-    [SerializeField] private Bullet bulletPrefab = null;
+    [SerializeField] private List<Bullet> bulletPrefabList = new List<Bullet>();
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private string collideWithTag = "Untagged";
@@ -41,7 +41,9 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+        int randomBulletIndex = Random.Range(0, bulletPrefabList.Count);
+
+        Instantiate(bulletPrefabList[randomBulletIndex], shootAt.position, Quaternion.identity);
         lastShootTimestamp = Time.time;
     }
 
