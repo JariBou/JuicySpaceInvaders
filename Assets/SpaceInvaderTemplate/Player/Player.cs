@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using SpaceInvaderTemplate;
+using SpaceInvaderTemplate.Utils;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private float deadzone = 0.3f;
     [SerializeField] private float speed = 1f;
@@ -13,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField] private string collideWithTag = "Untagged";
 
     private float lastShootTimestamp = Mathf.NegativeInfinity;
+    [SerializeField, Range(1, 10)] private int _lifeAmount;
+    private bool _deathTriggered;
 
     void Update()
     {
@@ -52,5 +56,22 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag != collideWithTag) { return; }
 
         GameManager.Instance.PlayGameOver();
+    }
+
+    int IDamageable.LifeAmount
+    {
+        get => _lifeAmount;
+        set => _lifeAmount = value;
+    }
+
+    bool IDamageable.DeathTriggered
+    {
+        get => _deathTriggered;
+        set => _deathTriggered = value;
+    }
+
+    public void OnDeath()
+    {
+        
     }
 }
