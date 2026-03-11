@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using SpaceInvaderTemplate;
 using SpaceInvaderTemplate.Utils;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private string collideWithTag = "Untagged";
+    [SerializeField] private float _rotateAngle = 30f;
+    [SerializeField] private float _rotateTime = 0.3f;
 
     private float lastShootTimestamp = Mathf.NegativeInfinity;
     [SerializeField, Range(1, 10)] private int _lifeAmount;
@@ -27,11 +30,21 @@ public class Player : MonoBehaviour, IDamageable
     void UpdateMovement()
     {
         float move = Input.GetAxis("Horizontal");
-        if (Mathf.Abs(move) < deadzone) { return; }
+        if (Mathf.Abs(move) < deadzone)
+        {
+            if (transform.eulerAngles.z > 0.1f)
+            {
+                transform.DORotate(Vector3.zero, _rotateTime);
+            }
+            return;
+        }
 
         move = Mathf.Sign(move);
         float delta = move * speed * Time.deltaTime;
         transform.position = GameManager.Instance.KeepInBounds(transform.position + Vector3.right * delta);
+        
+        Vector3 endRotateValue = new(0, 0, _rotateAngle * -move);
+        transform.DORotate(endRotateValue, _rotateTime);
     }
 
     void UpdateActions()
