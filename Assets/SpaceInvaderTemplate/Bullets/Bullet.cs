@@ -8,7 +8,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private string destroyCollider;
 
     [Header("Bullet type")]
-    [SerializeField] protected E_INVADERSTATE state;
+    [SerializeField]
+    private E_INVADERSTATE state;
 
     [Header("Particle systems")]
     [SerializeField] protected ParticleSystem _loopPS;
@@ -19,6 +20,8 @@ public class Bullet : MonoBehaviour
 
     protected Rigidbody2D _rb;
     private float waitTimeCollisionActivation = 0.25f;
+
+    public E_INVADERSTATE StatusType => state;
 
 
     // Start is called before the first frame update

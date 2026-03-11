@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Invader : MonoBehaviour
 {
+    private static readonly int VomitAnimName = Animator.StringToHash("Vomis");
+    private static readonly int PoopAnimName = Animator.StringToHash("Caca");
+    
     [SerializeField] private Bullet bulletPrefab = null;
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private string collideWithTag = "Player";
@@ -12,6 +15,7 @@ public class Invader : MonoBehaviour
     private E_INVADERSTATE _state;
 
     internal Action<Invader> onDestroy;
+    [SerializeField] private Animator _animator;
 
     public Vector2Int GridIndex { get; private set; }
 
@@ -20,22 +24,34 @@ public class Invader : MonoBehaviour
         set { 
             _state = value;
 
-            //CHANGER LES SPRITES/ANIMS ICI
-            switch(_state)
+            if (_animator == null)
             {
-                case E_INVADERSTATE.CLEAN:
-                case E_INVADERSTATE.VOMIT:
-                case E_INVADERSTATE.POOP:
-                case E_INVADERSTATE.BOTH:
-                default:
-                    break;
+                return;
             }
+            // state_vomis = b 010;
+            // state_poop = b 100;
+            // _state = b 110;
+            // state_vomis & _state => 010 & 010
+            // -> 0 & 1 = 0
+            // -> 1 & 1 = 1
+            // -> 0 & 0 = 0
+            // state_poop & _state => 100 & 010
+            // -> 1 & 1 = 1
+            // -> 0 & 1 = 0
+            // -> 0 & 0 = 0
+            _animator.SetBool(VomitAnimName, (_state & E_INVADERSTATE.VOMIT) > 0);
+            _animator.SetBool(PoopAnimName, (_state & E_INVADERSTATE.POOP) > 0);
         }
+    }
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
     }
 
     public void Initialize(Vector2Int gridIndex)
     {
-        this.GridIndex = gridIndex;
+        GridIndex = gridIndex;
     }
 
     public void OnDestroy()
@@ -45,7 +61,13 @@ public class Invader : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag != collideWithTag) { return; }
+        if(!collision.gameObject.CompareTag(collideWithTag)) { return; }
+
+        Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+        if (bullet != null)
+        {
+            State |= bullet.StatusType;
+        }
 
         Destroy(gameObject);
         //Destroy(collision.gameObject);
