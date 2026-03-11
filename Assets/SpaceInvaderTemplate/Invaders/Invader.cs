@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SpaceInvaderTemplate;
 using UnityEngine;
 
-public class Invader : MonoBehaviour
+public class Invader : DamageableBase
 {
     private static readonly int VomitAnimName = Animator.StringToHash("Vomis");
     private static readonly int PoopAnimName = Animator.StringToHash("Caca");
@@ -69,8 +70,13 @@ public class Invader : MonoBehaviour
             State |= bullet.StatusType;
         }
 
-        Destroy(gameObject);
+        TakeDamage(1);
         //Destroy(collision.gameObject);
+    }
+
+    protected override void OnDeath()
+    {
+        Destroy(gameObject);
     }
 
     public void Shoot()
