@@ -32,8 +32,8 @@ Material:
     m_Floats:
     - _Offset: 0
     - _Passes: 1
-    - _Range: 2.79
-    - _Resolution: 3.8
+    - _Range: 2.06
+    - _Resolution: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
