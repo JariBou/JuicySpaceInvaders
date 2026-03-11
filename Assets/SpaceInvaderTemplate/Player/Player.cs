@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -5,8 +6,9 @@ using SpaceInvaderTemplate;
 using SpaceInvaderTemplate.Utils;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : DamageableBase
 {
     [Header("Movements")]
     [SerializeField] private float deadzone = 0.3f;
@@ -22,7 +24,6 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float _rotateTime = 0.3f;
 
     private float lastShootTimestamp = Mathf.NegativeInfinity;
-    [SerializeField, Range(1, 10)] private int _lifeAmount;
     private bool _deathTriggered;
 
     void Update()
@@ -91,24 +92,12 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.tag != collideWithTag) { return; }
 
-        GameManager.Instance.PlayGameOver();
-    }
-
-    int IDamageable.LifeAmount
-    {
-        get => _lifeAmount;
-        set => _lifeAmount = value;
-    }
-
-    bool IDamageable.DeathTriggered
-    {
-        get => _deathTriggered;
-        set => _deathTriggered = value;
+        TakeDamage(1);
     }
 
     public void OnDeath()
     {
-        
+        GameManager.Instance.PlayGameOver();
     }
 
     private void OnValidate()
