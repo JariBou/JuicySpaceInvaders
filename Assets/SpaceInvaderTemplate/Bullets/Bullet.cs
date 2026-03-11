@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     [Header("Particle systems")]
     [SerializeField] protected ParticleSystem _loopPS;
     [SerializeField] protected GameObject _impactPSPrefab;
+    [SerializeField] protected ParticleSystem _fadeOutPS;
 
     [Header("Collider")]
     [SerializeField] protected CircleCollider2D _collider;
@@ -45,11 +46,25 @@ public class Bullet : MonoBehaviour
 
             Vector3 dir = collision.transform.position - transform.position;
 
+            _rb.linearVelocity = Vector3.zero;
 
             /*if (_rb.linearVelocity.y >= 0) Instantiate(_impactPSPrefab, transform.position, Quaternion.identity);
             else */
             Instantiate(_impactPSPrefab, transform.position, Quaternion.FromToRotation(transform.forward, dir));
-            Destroy(gameObject);
+            StartCoroutine(DestroyDefered());
         }
+    }
+
+    private IEnumerator DestroyDefered()
+    {
+        float time = 0.0f;
+
+        while(time < _fadeOutPS.main.duration)
+        {
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        Destroy(gameObject);
     }
 }

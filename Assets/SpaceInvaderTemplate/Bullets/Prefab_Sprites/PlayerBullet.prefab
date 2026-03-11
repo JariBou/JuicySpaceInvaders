@@ -51,7 +51,8 @@ MonoBehaviour:
   destroyCollider: BulletLimit
   state: 0
   _loopPS: {fileID: 5781709964987027189}
-  _impactPSPrefab: {fileID: 4985542078913450785, guid: 3a24b51057832604181f42a388d0b48f, type: 3}
+  _impactPSPrefab: {fileID: 4985542078913450785, guid: df6b2ff8aa97a9e4fb35b2a0fe29653f, type: 3}
+  _fadeOutPS: {fileID: 4355111109791745207}
   _collider: {fileID: 7187537139655989992}
 --- !u!58 &7187537139655989992
 CircleCollider2D:
@@ -181,6 +182,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+--- !u!198 &4355111109791745207 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1630119889726531078, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+  m_PrefabInstance: {fileID: 3093743273983632049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &5781709964987027189 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8850678866879917124, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
