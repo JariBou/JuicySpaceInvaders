@@ -7,16 +7,31 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected Vector3 startVelocity;
     [SerializeField] private string destroyCollider;
 
+    [Header("Bullet type")]
+    [SerializeField] protected E_INVADERSTATE state;
+
+    [Header("Particle systems")]
     [SerializeField] protected ParticleSystem _loopPS;
     [SerializeField] protected GameObject _impactPSPrefab;
 
+    [Header("Collider")]
+    [SerializeField] protected CircleCollider2D _collider;
+
     protected Rigidbody2D _rb;
+    private float waitTimeCollisionActivation = 0.25f;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _rb.linearVelocity = startVelocity;
+    }
+
+    private void Update()
+    {
+        waitTimeCollisionActivation -= Time.deltaTime;
+        if (waitTimeCollisionActivation < 0) _collider.enabled = true;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
