@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using DG.Tweening;
 using SpaceInvaderTemplate;
 using SpaceInvaderTemplate.Utils;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
+    [Header("Movements")]
     [SerializeField] private float deadzone = 0.3f;
     [SerializeField] private float speed = 1f;
 
+    [Header("Shoot")]
     [SerializeField] private List<Bullet> bulletPrefabList = new List<Bullet>();
+    [SerializeField] private List<float> bulletsProbabilities = new List<float>();
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private string collideWithTag = "Untagged";
@@ -58,7 +62,26 @@ public class Player : MonoBehaviour, IDamageable
 
     void Shoot()
     {
-        int randomBulletIndex = Random.Range(0, bulletPrefabList.Count);
+        float totalProbabilites = 0.0f;
+
+        foreach (float elem in bulletsProbabilities)
+        {
+            totalProbabilites += elem;
+        }
+
+        float randomPick = Random.value * totalProbabilites;
+
+        int randomBulletIndex = 0;
+
+        for (int i = 0; i < bulletsProbabilities.Count; i++)
+        {
+            if (randomPick < bulletsProbabilities[i])
+            {
+                randomBulletIndex = i;
+                break;
+            }
+            randomPick -= bulletsProbabilities[i];
+        }
 
         Instantiate(bulletPrefabList[randomBulletIndex], shootAt.position, Quaternion.identity);
         lastShootTimestamp = Time.time;
@@ -86,5 +109,12 @@ public class Player : MonoBehaviour, IDamageable
     public void OnDeath()
     {
         
+    }
+
+    private void OnValidate()
+    {
+        while (bulletsProbabilities.Count < bulletPrefabList.Count) bulletsProbabilities.Add(0);
+
+        while (bulletsProbabilities.Count > bulletPrefabList.Count) bulletsProbabilities.RemoveAt(bulletsProbabilities.Count - 1);
     }
 }

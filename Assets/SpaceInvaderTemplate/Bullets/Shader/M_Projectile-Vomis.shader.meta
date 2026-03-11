@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: f40a7b01d6492af4ebca427617d29b8f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _ProjectileVomis: {fileID: 2800000, guid: 8150ddceeb8197049bcd023bde269539, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

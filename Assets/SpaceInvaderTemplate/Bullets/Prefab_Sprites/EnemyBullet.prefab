@@ -104,6 +104,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: 0, y: -4, z: 0}
   destroyCollider: BulletLimit
+  state: 0
+  _loopPS: {fileID: 0}
+  _impactPSPrefab: {fileID: 0}
+  _collider: {fileID: 7187537139655989992}
 --- !u!58 &7187537139655989992
 CircleCollider2D:
   m_ObjectHideFlags: 0

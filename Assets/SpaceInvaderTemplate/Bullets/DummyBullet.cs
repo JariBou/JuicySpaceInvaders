@@ -8,11 +8,12 @@ using UnityEngine.Rendering;
 
 public class DummyBullet : Bullet
 {
+    [Header("Random Travel Parameters")]
     [SerializeField] private int _indexCountMaximum;
     [SerializeField] private int _indexCountMinimum;
     [SerializeField] private float _speed;
-    [SerializeField] private List<Vector2> _positionsList = new List<Vector2>();
-    [SerializeField] private CircleCollider2D _collider;
+
+    private List<Vector2> _positionsList = new List<Vector2>();
 
     private Coroutine _coroutine;
     private Invader _ennemyToTarget;

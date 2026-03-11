@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Invader-3_Vomis
+  m_Name: Invader-2_Caca-Vomis
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -103,9 +103,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 187178426959437219, guid: f4c2df9c768e9294eae543f8ee284535, type: 3}
+      value: {fileID: 28851415138930758, guid: f4c2df9c768e9294eae543f8ee284535, type: 3}
     - time: 0.25
-      value: {fileID: 187178426959437219, guid: f4c2df9c768e9294eae543f8ee284535, type: 3}
+      value: {fileID: 28851415138930758, guid: f4c2df9c768e9294eae543f8ee284535, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -146,8 +146,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 187178426959437219, guid: f4c2df9c768e9294eae543f8ee284535, type: 3}
-    - {fileID: 187178426959437219, guid: f4c2df9c768e9294eae543f8ee284535, type: 3}
+    - {fileID: 28851415138930758, guid: f4c2df9c768e9294eae543f8ee284535, type: 3}
+    - {fileID: 28851415138930758, guid: f4c2df9c768e9294eae543f8ee284535, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
