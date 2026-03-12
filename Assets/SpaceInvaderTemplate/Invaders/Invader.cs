@@ -66,7 +66,7 @@ public class Invader : DamageableBase
     private void OnDamageTaken()
     {
         _damagedSound.PlayOneShotSound();
-        _animator.SetTrigger("Hit");
+        if(_animator != null) _animator.SetTrigger("Hit");
     }
 
     public void Initialize(Vector2Int gridIndex)

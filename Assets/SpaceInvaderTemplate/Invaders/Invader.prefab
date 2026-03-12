@@ -550,12 +550,32 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: _clipList.Array.size
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: '_clipList.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 344935487c2e0ba488abd0cd9b83fd36, type: 3}
+    - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
+      propertyPath: '_clipList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d3bccd0505c643b438d65bd752f7cc2c, type: 3}
+    - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
+      propertyPath: '_clipList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 587b8e8a4784aac43bff3724f88815b2, type: 3}
+    - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
+      propertyPath: '_clipList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 49d65eb903fa0604fab47332b83f8141, type: 3}
+    - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
+      propertyPath: '_clipList.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: fb22fd52ad3264841aa8556b5f943d83, type: 3}
+    - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
+      propertyPath: '_clipList.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: fb5a4f557efd5d046a0bd0dd4d91d440, type: 3}
     - target: {fileID: 3262198593983406485, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
