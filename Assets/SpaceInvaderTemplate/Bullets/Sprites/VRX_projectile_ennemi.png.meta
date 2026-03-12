@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8150ddceeb8197049bcd023bde269539
+guid: ab3ddb2929f15a343a700ca727e91031
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3440710741772147982
-    second: VFX_vomi_0
+      213: 5423412672910645055
+    second: VRX_projectile_ennemi_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VFX_vomi_0
+      name: VRX_projectile_ennemi_0
       rect:
         serializedVersion: 2
-        x: 106
-        y: 15
-        width: 364
-        height: 564
+        x: 13
+        y: 14
+        width: 674
+        height: 673
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f2eccd5fc32040d0800000000000000
-      internalID: -3440710741772147982
+      spriteID: f37d03f6715d34b40800000000000000
+      internalID: 5423412672910645055
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      VFX_vomi_0: -3440710741772147982
+      VRX_projectile_ennemi_0: 5423412672910645055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

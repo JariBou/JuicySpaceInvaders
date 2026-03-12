@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 109793325746875007}
   - component: {fileID: 8428480850121407872}
   m_Layer: 0
-  m_Name: Fade-Out_Impact-Minable
+  m_Name: Fade-Out_Shoot-Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4838,7 +4838,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6bdb8622f7e71474b810757d0ce1755f, type: 2}
+  - {fileID: 2100000, guid: ce7ee5feebd1f6240a74e65ae4103e9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4866,18 +4866,18 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 1
+  m_LengthScale: 3
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
-  m_Flip: {x: 0, y: 0, z: 0}
+  m_Flip: {x: 0, y: 1, z: 0}
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 1
-  m_RotateWithStretchDirection: 1
+  m_RotateWithStretchDirection: 0
   m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
@@ -4903,7 +4903,7 @@ GameObject:
   - component: {fileID: 4199387663829748646}
   - component: {fileID: 5631722294319506416}
   m_Layer: 0
-  m_Name: GameObject_Impact-Minable
+  m_Name: GameObject_Player-Shoot-Burst-Vomis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9737,7 +9737,7 @@ GameObject:
   - component: {fileID: 2039472230778320115}
   - component: {fileID: 2426600594533199826}
   m_Layer: 0
-  m_Name: 'Loop_Impact-Minable '
+  m_Name: Loop_Shoot-Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10013,7 +10013,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10535,7 +10535,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 180
-      mode: 0
+      mode: 3
       spread: 0
       speed:
         serializedVersion: 2
@@ -10706,7 +10706,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 6
+        scalar: 4
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -14564,7 +14564,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6bdb8622f7e71474b810757d0ce1755f, type: 2}
+  - {fileID: 2100000, guid: ce7ee5feebd1f6240a74e65ae4103e9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14592,18 +14592,18 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 1
+  m_LengthScale: 3
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
-  m_Flip: {x: 0, y: 0, z: 0}
+  m_Flip: {x: 0, y: 1, z: 0}
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 1
-  m_RotateWithStretchDirection: 1
+  m_RotateWithStretchDirection: 0
   m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
