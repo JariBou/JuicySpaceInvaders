@@ -43,7 +43,10 @@ public class Bullet : MonoBehaviour
         _rb.linearVelocity = startVelocity;
 
         state = GameManager.GetFeatureState(FeelFeature.BulletApplyStatus) ? state : E_INVADERSTATE.NONE;
-        _soundPlayer.PlaySound();
+        if (_soundPlayer != null)
+        {
+            _soundPlayer.PlaySound();
+        }
     }
 
     public virtual void Update()
@@ -67,8 +70,19 @@ public class Bullet : MonoBehaviour
 
             /*if (_rb.linearVelocity.y >= 0) Instantiate(_impactPSPrefab, transform.position, Quaternion.identity);
             else */
-            Instantiate(_impactPSPrefab, transform.position, Quaternion.FromToRotation(transform.forward, dir));
-            StartCoroutine(DestroyDefered());
+            if (_impactPSPrefab != null)
+            {
+                Instantiate(_impactPSPrefab, transform.position, Quaternion.FromToRotation(transform.forward, dir));
+            }
+
+            if (_fadeOutPS != null)
+            {
+                StartCoroutine(DestroyDefered());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
