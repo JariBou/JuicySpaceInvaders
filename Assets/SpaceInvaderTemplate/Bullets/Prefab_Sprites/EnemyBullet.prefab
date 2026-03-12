@@ -79,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.45882353, b: 0.45882353, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ab3ddb2929f15a343a700ca727e91031, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   state: 0
   _loopPS: {fileID: 0}
   _impactPSPrefab: {fileID: 0}
+  _fadeOutPS: {fileID: 0}
   _collider: {fileID: 7187537139655989992}
 --- !u!58 &7187537139655989992
 CircleCollider2D:
