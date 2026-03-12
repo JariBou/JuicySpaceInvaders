@@ -20,7 +20,7 @@ public class SoundPlayer : MonoBehaviour
         _audioSource.Stop();
     }
 
-    public void PlaySound()
+    public void PlaySoundLoop()
     {
         _audioSource.loop = true;
         _audioSource.clip = _clipList[0];

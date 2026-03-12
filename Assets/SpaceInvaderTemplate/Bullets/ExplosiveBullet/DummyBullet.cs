@@ -50,7 +50,7 @@ public class DummyBullet : Bullet
         _positionsList[^1] = _ennemyToTarget.transform.position;
 
         _soundPlayer.StopSound();
-        _soundPlayer.PlaySound();
+        _soundPlayer.PlaySoundLoop();
     }
 
     private void Update()
@@ -88,6 +88,8 @@ public class DummyBullet : Bullet
             if (_explosionPrefab)
             {
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+
+                FindAnyObjectByType<Wave>().PostExplosion();
             }
         }
     }

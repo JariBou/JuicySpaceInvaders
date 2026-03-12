@@ -25,7 +25,6 @@ public class Invader : DamageableBase
     [SerializeField] private SoundPlayer _shootSound;
     [SerializeField] private SoundPlayer _poopShootSound;
     [SerializeField] private SoundPlayer _damagedSound;
-    [SerializeField] private SoundPlayer _transiCacaSound;
 
     public Vector2Int GridIndex { get; private set; }
 
@@ -111,8 +110,6 @@ public class Invader : DamageableBase
     public void ApplyStatus(E_INVADERSTATE status)
     {
         State |= status;
-
-        if (status == E_INVADERSTATE.POOP) _transiCacaSound.PlayOneShotSound();
     }
 
     public bool HasStatus(E_INVADERSTATE status)
