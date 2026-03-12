@@ -7,16 +7,19 @@ Shader "Unlit/HpDisplayShader"
         _BgCol ("Background Color", Color) = (0, 0, 0, 1)
         _Percent ("Fill Percent", Range(0, 1)) = 1
         _Smoothness ("Smoothness", Range(0, 0.1)) = 0.05
+         _Alpha ("Alpha", Range(0, 1)) = 1
     }
     SubShader
     {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" }
         LOD 100
-Cull Off
-                ZWrite On
-                ZTest LEqual
-                Blend One Zero
-                AlphaToMask On
+//                Cull Off
+//                ZWrite On
+//                ZTest LEqual
+//                Blend One Zero
+//                AlphaToMask On
+        Blend SrcAlpha OneMinusSrcAlpha
+                
         Pass
         {
             CGPROGRAM
@@ -46,6 +49,7 @@ Cull Off
             float4 _BgCol;
             float _Percent;
             float _Smoothness;
+            float _Alpha;
             
             // float sdRoundedBox( in float2 p, in float2 b, in float4 r )
             // {
@@ -75,6 +79,7 @@ Cull Off
                 fixed t = smoothstep(_Percent-_Smoothness, _Percent+_Smoothness, i.uv);
 
                 fixed4 col = lerp(_FillCol, _BgCol, t);
+                col.a = _Alpha;
                 // col.a *= (sdBox(i.uv, float2(1, 1)) > 0 ? 0 : 1);
                 // col.a *= (sdRoundedBox(i.uv, float2(1, 1), float4(0.2, 1.2, 1.2, 1.2)) > 0 ? 0 : 1);
                 // col.a = 0;
