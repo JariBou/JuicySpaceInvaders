@@ -16,7 +16,7 @@ public class Player : DamageableBase
 
     [Header("Shoot")]
     [SerializeField] private List<Bullet> bulletPrefabList = new List<Bullet>();
-    [SerializeField] private List<float> bulletsProbabilities = new List<float>();
+    [SerializeField] private List<int> bulletsProbabilities = new List<int>();
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private string collideWithTag = "Untagged";
@@ -63,34 +63,64 @@ public class Player : DamageableBase
 
     void Shoot()
     {
-        float totalProbabilites = 0.0f;
+        // float totalProbabilites = 0.0f;
+        //
+        // foreach (float elem in bulletsProbabilities)
+        // {
+        //     totalProbabilites += elem;
+        // }
+        //
+        // float randomPick = Random.value * totalProbabilites;
+        //
+        // int randomBulletIndex = 0;
+        //
+        // for (int i = 0; i < bulletsProbabilities.Count; i++)
+        // {
+        //     if (randomPick < bulletsProbabilities[i])
+        //     {
+        //         randomBulletIndex = i;
+        //         break;
+        //     }
+        //
+        //     randomPick -= bulletsProbabilities[i];
+        // }
 
-        foreach (float elem in bulletsProbabilities)
+        List<Bullet> prefabs = new List<Bullet>();
+        for (int i = 0; i < bulletPrefabList.Count; i++)
         {
-            totalProbabilites += elem;
-        }
-
-        float randomPick = Random.value * totalProbabilites;
-
-        int randomBulletIndex = 0;
-
-        for (int i = 0; i < bulletsProbabilities.Count; i++)
-        {
-            if (randomPick < bulletsProbabilities[i])
+            if (IsBulletTypeEnabled(bulletPrefabList[i].BulletType))
             {
-                randomBulletIndex = i;
-                break;
+                for (int j = 0; j < bulletsProbabilities[i]; j++)
+                {
+                    prefabs.Add(bulletPrefabList[i]);
+                }
             }
-            randomPick -= bulletsProbabilities[i];
         }
 
-        Bullet bulet = Instantiate(bulletPrefabList[randomBulletIndex], shootAt.position, Quaternion.identity);
+        // prefabs.Shuffle();
+
+        Instantiate(prefabs[Random.Range(0, prefabs.Count)], shootAt.position, Quaternion.identity);
         lastShootTimestamp = Time.time;
+    }
+
+    public bool IsBulletTypeEnabled(Bullet.BType bType)
+    {
+        switch (bType)  
+        {
+            case Bullet.BType.Weak:
+                return GameManager.GetFeatureState(FeelFeature.BulletType_Weak);
+            case Bullet.BType.Explosive:
+                return GameManager.GetFeatureState(FeelFeature.BulletType_Explosion);
+            case Bullet.BType.Vomit:
+                return true;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(bType), bType, null);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != collideWithTag) { return; }
+        if (!collision.gameObject.CompareTag(collideWithTag)) { return; }
 
         TakeDamage(1);
     }

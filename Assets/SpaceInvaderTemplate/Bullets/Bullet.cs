@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public enum BType
+    {
+        Weak,
+        Explosive,
+        Vomit
+    }
     [SerializeField] protected Vector3 startVelocity;
     [SerializeField] private string destroyCollider;
 
@@ -23,6 +29,9 @@ public class Bullet : MonoBehaviour
     private float waitTimeCollisionActivation = 0.25f;
 
     public E_INVADERSTATE StatusType => state;
+    
+    [SerializeField] private BType _bulletType;
+    public BType BulletType => _bulletType;
 
 
     // Start is called before the first frame update

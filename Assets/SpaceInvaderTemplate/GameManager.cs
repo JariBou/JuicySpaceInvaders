@@ -6,6 +6,8 @@ using UnityEngine;
 public enum FeelFeature
 {
     BulletApplyStatus,
+    BulletType_Explosion,
+    BulletType_Weak,
 }
 
 [DefaultExecutionOrder(-100)]
