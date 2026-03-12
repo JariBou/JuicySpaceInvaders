@@ -30,8 +30,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpha: 1
-    - _Percent: 0.5
-    - _Smoothness: 0.014
+    - _Percent: 0
+    - _Smoothness: 0.0077
     m_Colors:
     - _BgCol: {r: 0, g: 0, b: 0, a: 1}
     - _FillCol: {r: 1, g: 0, b: 0, a: 1}

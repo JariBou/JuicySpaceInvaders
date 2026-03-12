@@ -9,7 +9,8 @@ public class Invader : DamageableBase
 {
     private static readonly int VomitAnimName = Animator.StringToHash("Vomis");
     private static readonly int PoopAnimName = Animator.StringToHash("Caca");
-    
+    private static readonly int DeathAnimName = Animator.StringToHash("Death");
+
     [SerializeField] private Bullet bulletPrefab = null;
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private string collideWithTag = "Player";
@@ -96,7 +97,7 @@ public class Invader : DamageableBase
 
     protected override void OnDeath()
     {
-        _animator.SetBool("Death", true);       
+        _animator.SetBool(DeathAnimName, true);       
     }
 
     public void Die()

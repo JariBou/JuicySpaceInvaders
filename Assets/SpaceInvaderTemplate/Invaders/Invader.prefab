@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3798776053510768192}
   - component: {fileID: 9143350150131790725}
-  - component: {fileID: 1159637569033088893}
-  - component: {fileID: 8777215644906191111}
   - component: {fileID: 4177820785016068187}
+  - component: {fileID: 5529516583131003340}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -90,74 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1159637569033088893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916523811337857245}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5acce96dd6725b4b982397a019a83f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lifeAmount: 3
-  bulletPrefab: {fileID: 7369880722360228486, guid: 47d2029f071079c4a98ac35325b21f24, type: 3}
-  shootAt: {fileID: 0}
-  collideWithTag: Player
-  burstDieVomit: {fileID: 0}
-  burstDiePoop: {fileID: 0}
-  _animator: {fileID: 0}
-  _shootSound: {fileID: 0}
-  _poopShootSound: {fileID: 0}
-  _damagedSound: {fileID: 0}
---- !u!61 &8777215644906191111
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916523811337857245}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!95 &4177820785016068187
 Animator:
   serializedVersion: 7
@@ -180,6 +111,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5529516583131003340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916523811337857245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca79c4816f134735b16309d2de4f96c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2227295033860736033
 GameObject:
   m_ObjectHideFlags: 0
