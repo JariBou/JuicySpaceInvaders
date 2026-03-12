@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using GraphicsLabor.Scripts.Core.Utility;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
+
+public enum FeelFeature
+{
+    BulletApplyStatus,
+}
 
 [DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
@@ -14,13 +18,32 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2 bounds;
     private Bounds Bounds => new Bounds(transform.position, new Vector3(bounds.x, bounds.y, 1000f));
 
+
     [SerializeField] private float gameOverHeight;
 
     public List<Invader> invadersList = new List<Invader>();
+    
+    // Disclaimer: this is still in development and doesn't seem to work in builds for whatever reason so be careful
+    [SerializeField] private SerializedDictionary<FeelFeature, bool> _feelFeatures = new();
+    public SerializedDictionary<FeelFeature, bool> FeelFeatures => _feelFeatures;
 
     void Awake()
     {
         Instance = this;
+        #if !UNITY_EDITOR
+        foreach (FeelFeature feelFeature in Enum.GetValues(typeof(FeelFeature)))
+        {
+            _feelFeatures.TryAdd(feelFeature, false);
+        }
+        #endif
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            FeelFeatures[FeelFeature.BulletApplyStatus] = !FeelFeatures[FeelFeature.BulletApplyStatus];
+        }
     }
 
     public Vector3 KeepInBounds(Vector3 position)
@@ -104,5 +127,29 @@ public class GameManager : MonoBehaviour
         Gizmos.DrawLine(
             transform.position + Vector3.up * (gameOverHeight - bounds.y * 0.5f) - Vector3.right * bounds.x * 0.5f,
             transform.position + Vector3.up * (gameOverHeight - bounds.y * 0.5f) + Vector3.right * bounds.x * 0.5f);
+    }
+
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        foreach (FeelFeature feelFeature in Enum.GetValues(typeof(FeelFeature)))
+        {
+            _feelFeatures.TryAdd(feelFeature, false);
+        }
+    }
+    #endif
+    public static bool GetFeatureState(FeelFeature feature)
+    {
+        if (Instance == null)
+        {
+            throw new NullReferenceException("Instance of GameManager is null");
+        }
+
+        if (!Instance.FeelFeatures.ContainsKey(feature))
+        {
+            Debug.LogError("Feel feature not found: " + feature);
+            return false;
+        }
+        return Instance.FeelFeatures[feature];
     }
 }

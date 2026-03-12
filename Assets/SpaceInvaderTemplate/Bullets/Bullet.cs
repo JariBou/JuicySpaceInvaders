@@ -30,6 +30,8 @@ public class Bullet : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _rb.linearVelocity = startVelocity;
+
+        state = GameManager.GetFeatureState(FeelFeature.BulletApplyStatus) ? state : E_INVADERSTATE.NONE;
     }
 
     private void Update()
@@ -40,7 +42,7 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Untagged")
+        if (collision.gameObject.CompareTag("Untagged"))
         {
             _loopPS.Stop();
 

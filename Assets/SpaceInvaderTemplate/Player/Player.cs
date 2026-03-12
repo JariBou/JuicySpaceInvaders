@@ -84,7 +84,7 @@ public class Player : DamageableBase
             randomPick -= bulletsProbabilities[i];
         }
 
-        Instantiate(bulletPrefabList[randomBulletIndex], shootAt.position, Quaternion.identity);
+        Bullet bulet = Instantiate(bulletPrefabList[randomBulletIndex], shootAt.position, Quaternion.identity);
         lastShootTimestamp = Time.time;
     }
 
