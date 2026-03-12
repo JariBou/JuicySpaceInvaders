@@ -8,8 +8,14 @@ namespace SpaceInvaderTemplate
         public event Action DamageTaken;
         
         [SerializeField, Range(1, 10)] private int _lifeAmount = 3;
+        public int MaxLife { get; protected set; }
         
         public bool DeathTriggered { get; protected set; }
+
+        public virtual void Awake()
+        {
+            MaxLife = LifeAmount;
+        }
 
         public int LifeAmount
         {
@@ -20,6 +26,11 @@ namespace SpaceInvaderTemplate
         public void SetLifeAmount(int lifeAmount)
         {
             LifeAmount = lifeAmount;
+        }
+        
+        public void SetMaxLifeAmount(int lifeAmount)
+        {
+            MaxLife = lifeAmount;
         }
 
         public void TakeDamage(int damage)
@@ -45,6 +56,11 @@ namespace SpaceInvaderTemplate
         protected bool IsDead()
         {
             return LifeAmount <= 0;
+        }
+
+        public float GetPercentHp()
+        {
+            return (float)LifeAmount / MaxLife;
         }
     }
 }
