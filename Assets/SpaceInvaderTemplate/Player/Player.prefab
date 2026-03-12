@@ -369,10 +369,7 @@ MonoBehaviour:
   - {fileID: 7369880722360228486, guid: 42269f87d33f3eb4898473401db125ae, type: 3}
   - {fileID: 5913568574197081308, guid: 4f1c4a6973c831148a102ecb688574fe, type: 3}
   - {fileID: -5665347396053136586, guid: c34d79c4b954a7d47b8dbf54774f76a9, type: 3}
-  bulletsProbabilities:
-  - 4
-  - 4
-  - 2
+  bulletsProbabilities: 040000000400000002000000
   bulletSounds:
   - {fileID: 8300000, guid: c511eceaab6fb1848bf0565975ca5a47, type: 3}
   - {fileID: 0}
@@ -380,8 +377,8 @@ MonoBehaviour:
   shootAt: {fileID: 4851470676748780283}
   shootCooldown: 0.3
   collideWithTag: Untagged
-  _rotateAngle: 30
-  _rotateTime: 0.3
+  _rotateAngle: 17
+  _rotateTime: 0.25
   _audioSourceBulletLaunch: {fileID: 2564255758413757422}
   _audioSourceDamageTaken: {fileID: 313094415368115436}
   _damageTaken: {fileID: 8300000, guid: c08e4ea309656674ba359f2edbbb940b, type: 3}

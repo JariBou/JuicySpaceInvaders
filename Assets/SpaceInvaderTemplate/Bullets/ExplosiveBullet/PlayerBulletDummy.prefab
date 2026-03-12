@@ -56,7 +56,7 @@ MonoBehaviour:
   _fadeOutPS: {fileID: 1303593667065274515}
   _collider: {fileID: 7187537139655989992}
   _soundPlayer: {fileID: 8772222043694018804}
-  _bulletType: 0
+  _bulletType: 1
   _indexCountMaximum: 10
   _indexCountMinimum: 5
   _speed: 4

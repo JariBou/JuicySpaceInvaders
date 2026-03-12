@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class WeakBullet : Bullet
@@ -14,8 +13,9 @@ public class WeakBullet : Bullet
         _upSound.PlaySound();
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         if (_rb.linearVelocity.y < 0)
         {
             tag = "Untagged";
