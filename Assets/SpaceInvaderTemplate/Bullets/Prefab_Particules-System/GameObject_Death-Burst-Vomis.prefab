@@ -14703,6 +14703,7 @@ GameObject:
   - component: {fileID: 1920271486565708100}
   - component: {fileID: 2597272623925079568}
   - component: {fileID: 7930462698771669018}
+  - component: {fileID: 3947980012114713495}
   m_Layer: 0
   m_Name: GameObject_Death-Burst-Vomis
   m_TagString: Untagged
@@ -19527,6 +19528,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3947980012114713495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110160519001946954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f414915c9c6bfd14e9375186b9c98a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _autoDestroyTime: 5
 --- !u!1 &7908579968790543979
 GameObject:
   m_ObjectHideFlags: 0
