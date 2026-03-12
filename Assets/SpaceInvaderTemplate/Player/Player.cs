@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using SpaceInvaderTemplate;
-using SpaceInvaderTemplate.Utils;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,15 +13,34 @@ public class Player : DamageableBase
 
     [Header("Shoot")]
     [SerializeField] private List<Bullet> bulletPrefabList = new List<Bullet>();
-    [SerializeField] private List<float> bulletsProbabilities = new List<float>();
+    [SerializeField] private List<int> bulletsProbabilities = new List<int>();
+    [SerializeField] private List<SoundPlayer> bulletSounds = new List<SoundPlayer>();
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private string collideWithTag = "Untagged";
     [SerializeField] private float _rotateAngle = 30f;
     [SerializeField] private float _rotateTime = 0.3f;
 
+    [Header("Audio")]
+    [SerializeField] private SoundPlayer _damageTaken;
+
     private float lastShootTimestamp = Mathf.NegativeInfinity;
     private bool _deathTriggered;
+
+    private void OnEnable()
+    {
+        DamageTaken += OnDamageTaken;
+    }
+
+    private void OnDisable()
+    {
+        DamageTaken -= OnDamageTaken;
+    }
+
+    private void OnDamageTaken()
+    {
+        _damageTaken.PlaySound();
+    }
 
     void Update()
     {
@@ -63,39 +79,78 @@ public class Player : DamageableBase
 
     void Shoot()
     {
-        float totalProbabilites = 0.0f;
+        // float totalProbabilites = 0.0f;
+        //
+        // foreach (float elem in bulletsProbabilities)
+        // {
+        //     totalProbabilites += elem;
+        // }
+        //
+        // float randomPick = Random.value * totalProbabilites;
+        //
+        // int randomBulletIndex = 0;
+        //
+        // for (int i = 0; i < bulletsProbabilities.Count; i++)
+        // {
+        //     if (randomPick < bulletsProbabilities[i])
+        //     {
+        //         randomBulletIndex = i;
+        //         break;
+        //     }
+        //
+        //     randomPick -= bulletsProbabilities[i];
+        // }
 
-        foreach (float elem in bulletsProbabilities)
+        List<Bullet> prefabs = new List<Bullet>();
+        for (int i = 0; i < bulletPrefabList.Count; i++)
         {
-            totalProbabilites += elem;
-        }
-
-        float randomPick = Random.value * totalProbabilites;
-
-        int randomBulletIndex = 0;
-
-        for (int i = 0; i < bulletsProbabilities.Count; i++)
-        {
-            if (randomPick < bulletsProbabilities[i])
+            if (IsBulletTypeEnabled(bulletPrefabList[i].BulletType))
             {
-                randomBulletIndex = i;
-                break;
+                for (int j = 0; j < bulletsProbabilities[i]; j++)
+                {
+                    prefabs.Add(bulletPrefabList[i]);
+                }
             }
-            randomPick -= bulletsProbabilities[i];
         }
 
-        Instantiate(bulletPrefabList[randomBulletIndex], shootAt.position, Quaternion.identity);
+        // prefabs.Shuffle();
+
+        int rand = Random.Range(0, prefabs.Count);
+        Instantiate(prefabs[rand], shootAt.position, Quaternion.identity);
+
+        int indexOf = bulletPrefabList.IndexOf(prefabs[rand]);
+        SoundPlayer soundPlayer = bulletSounds[indexOf];
+        if (soundPlayer != null)
+        {
+            soundPlayer.PlaySound();
+        }
+
         lastShootTimestamp = Time.time;
+    }
+
+    public bool IsBulletTypeEnabled(Bullet.BType bType)
+    {
+        switch (bType)  
+        {
+            case Bullet.BType.Weak:
+                return GameManager.GetFeatureState(FeelFeature.BulletType_Weak);
+            case Bullet.BType.Explosive:
+                return GameManager.GetFeatureState(FeelFeature.BulletType_Explosive);
+            case Bullet.BType.Vomit:
+                return true;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(bType), bType, null);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != collideWithTag) { return; }
+        if (!collision.gameObject.CompareTag(collideWithTag)) { return; }
 
         TakeDamage(1);
     }
 
-    public void OnDeath()
+    protected override void OnDeath()
     {
         GameManager.Instance.PlayGameOver();
     }
@@ -105,5 +160,9 @@ public class Player : DamageableBase
         while (bulletsProbabilities.Count < bulletPrefabList.Count) bulletsProbabilities.Add(0);
 
         while (bulletsProbabilities.Count > bulletPrefabList.Count) bulletsProbabilities.RemoveAt(bulletsProbabilities.Count - 1);
+
+        while (bulletSounds.Count < bulletPrefabList.Count) bulletSounds.Add(null);
+
+        while (bulletSounds.Count > bulletPrefabList.Count) bulletSounds.RemoveAt(bulletsProbabilities.Count - 1);
     }
 }

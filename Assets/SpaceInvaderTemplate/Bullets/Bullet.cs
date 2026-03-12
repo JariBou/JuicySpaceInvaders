@@ -1,28 +1,40 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public enum BType
+    {
+        Weak,
+        Explosive,
+        Vomit
+    }
     [SerializeField] protected Vector3 startVelocity;
     [SerializeField] private string destroyCollider;
 
     [Header("Bullet type")]
     [SerializeField]
     private E_INVADERSTATE state;
+    [SerializeField] private BType _bulletType;
 
     [Header("Particle systems")]
     [SerializeField] protected ParticleSystem _loopPS;
     [SerializeField] protected GameObject _impactPSPrefab;
     [SerializeField] protected ParticleSystem _fadeOutPS;
+    [SerializeField] protected GameObject _burstSpawn;
 
     [Header("Collider")]
     [SerializeField] protected CircleCollider2D _collider;
 
+    [Header("Audio")]
+    [SerializeField] protected SoundPlayer _soundPlayer;
+
     protected Rigidbody2D _rb;
-    private float waitTimeCollisionActivation = 0.25f;
+    private float waitTimeCollisionActivation = 0.15f;
 
     public E_INVADERSTATE StatusType => state;
+    
+    public BType BulletType => _bulletType;
 
 
     // Start is called before the first frame update
@@ -30,9 +42,13 @@ public class Bullet : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _rb.linearVelocity = startVelocity;
+
+        state = GameManager.GetFeatureState(FeelFeature.BulletApplyStatus) ? state : E_INVADERSTATE.NONE;
+        if (_soundPlayer != null) _soundPlayer.PlaySound();
+        if(_burstSpawn != null) Instantiate(_burstSpawn, transform.position, Quaternion.identity);
     }
 
-    private void Update()
+    public virtual void Update()
     {
         waitTimeCollisionActivation -= Time.deltaTime;
         if (waitTimeCollisionActivation < 0) _collider.enabled = true;
@@ -40,9 +56,12 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Untagged")
+        if (collision.gameObject.CompareTag("Untagged"))
         {
-            _loopPS.Stop();
+            if (_loopPS != null)
+            {
+                _loopPS.Stop();
+            }
 
             Vector3 dir = collision.transform.position - transform.position;
 
@@ -50,8 +69,19 @@ public class Bullet : MonoBehaviour
 
             /*if (_rb.linearVelocity.y >= 0) Instantiate(_impactPSPrefab, transform.position, Quaternion.identity);
             else */
-            Instantiate(_impactPSPrefab, transform.position, Quaternion.FromToRotation(transform.forward, dir));
-            StartCoroutine(DestroyDefered());
+            if (_impactPSPrefab != null)
+            {
+                Instantiate(_impactPSPrefab, transform.position, Quaternion.FromToRotation(transform.forward, dir));
+            }
+
+            if (_fadeOutPS != null)
+            {
+                StartCoroutine(DestroyDefered());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

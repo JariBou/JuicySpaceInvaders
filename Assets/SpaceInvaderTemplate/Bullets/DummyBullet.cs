@@ -1,10 +1,6 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Rendering;
 
 public class DummyBullet : Bullet
 {
@@ -59,7 +55,6 @@ public class DummyBullet : Bullet
 
             _positionsList[_positionsList.Count - 1] = _ennemyToTarget.transform.position;
         }
-       
     }
 
     IEnumerator MoveToPointCoroutine()

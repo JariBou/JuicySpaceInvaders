@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using SpaceInvaderTemplate;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Invader : DamageableBase
 {
@@ -13,10 +12,18 @@ public class Invader : DamageableBase
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private string collideWithTag = "Player";
 
+    [SerializeField] private GameObject burstDieVomit;
+    [SerializeField] private GameObject burstDiePoop;
+
     private E_INVADERSTATE _state;
 
     internal Action<Invader> onDestroy;
     [SerializeField] private Animator _animator;
+
+    [Header("Audio")]
+    [SerializeField] private SoundPlayer _shootSound;
+    [SerializeField] private SoundPlayer _poopShootSound;
+    [SerializeField] private SoundPlayer _damagedSound;
 
     public Vector2Int GridIndex { get; private set; }
 
@@ -47,7 +54,16 @@ public class Invader : DamageableBase
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        DamageTaken += OnDamageTaken;
+
+        _animator = GetComponentInChildren<Animator>();
+
+        _animator.SetInteger("Invader_Type", Random.Range(0, 3));
+    }
+
+    private void OnDamageTaken()
+    {
+        _damagedSound.PlaySound();
     }
 
     public void Initialize(Vector2Int gridIndex)
@@ -76,11 +92,17 @@ public class Invader : DamageableBase
 
     protected override void OnDeath()
     {
+        if(burstDiePoop != null && ((_state & E_INVADERSTATE.VOMIT) > 0)) Instantiate(burstDieVomit, transform.position, Quaternion.identity);
+        if(burstDiePoop != null && ((_state & E_INVADERSTATE.POOP) > 0)) Instantiate(burstDiePoop, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
     public void Shoot()
     {
+        if (_shootSound != null && ((_state & E_INVADERSTATE.POOP) > 0)) _poopShootSound.PlaySound();
+        else if (_shootSound != null) _shootSound.PlaySound();
+
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
     }
 }
