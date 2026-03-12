@@ -236,7 +236,7 @@ MonoBehaviour:
   shootAt: {fileID: 8808591723042360307}
   collideWithTag: Player
   burstDieVomit: {fileID: 5110160519001946954, guid: ca0f5c254737fa84b85208cd36ad933c, type: 3}
-  burstDiePoop: {fileID: 0}
+  burstDiePoop: {fileID: 5110160519001946954, guid: 5a46944f4d78de944bdea92a3763a0b9, type: 3}
   _animator: {fileID: 0}
   _shootSound: {fileID: 8592778202265057658}
   _poopShootSound: {fileID: 6676932418113903971}
@@ -668,6 +668,10 @@ PrefabInstance:
     - target: {fileID: 3262198593983406485, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3443143672028236620, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5256391648655618410, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: m_Name

@@ -51,12 +51,13 @@ MonoBehaviour:
   startVelocity: {x: 0, y: 4, z: 0}
   destroyCollider: BulletLimit
   state: 0
-  _loopPS: {fileID: 2273588241829932722}
-  _impactPSPrefab: {fileID: 4985542078913450785, guid: 4b4e04ce7a9933f43aecf7f3ed9da9cf, type: 3}
-  _fadeOutPS: {fileID: 1303593667065274515}
+  _bulletType: 1
+  _loopPS: {fileID: 7250736644413431670}
+  _impactPSPrefab: {fileID: 4985542078913450785, guid: 57683c68259e7a04e894f786c2efc4e8, type: 3}
+  _fadeOutPS: {fileID: 2771335701358160843}
+  _burstSpawn: {fileID: 4985542078913450785, guid: 73157b69cfeae6843b8755743671b0de, type: 3}
   _collider: {fileID: 7187537139655989992}
   _soundPlayer: {fileID: 8772222043694018804}
-  _bulletType: 1
   _indexCountMaximum: 10
   _indexCountMinimum: 5
   _speed: 4
@@ -180,14 +181,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97d7e4b94bd33fa4ab96028a00750ea7, type: 3}
---- !u!198 &1303593667065274515 stripped
+--- !u!198 &2771335701358160843 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2161394226272803666, guid: 97d7e4b94bd33fa4ab96028a00750ea7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2998368429406310410, guid: 97d7e4b94bd33fa4ab96028a00750ea7, type: 3}
   m_PrefabInstance: {fileID: 1146618075115551681}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &2273588241829932722 stripped
+--- !u!198 &7250736644413431670 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1181336620810032499, guid: 97d7e4b94bd33fa4ab96028a00750ea7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7743466355175089335, guid: 97d7e4b94bd33fa4ab96028a00750ea7, type: 3}
   m_PrefabInstance: {fileID: 1146618075115551681}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7547177404914975225 stripped

@@ -203,6 +203,7 @@ MonoBehaviour:
   _impactPSPrefab: {fileID: 4985542078913450785, guid: df6b2ff8aa97a9e4fb35b2a0fe29653f, type: 3}
   _fadeOutPS: {fileID: 4355111109791745207}
   _burstSpawn: {fileID: 4985542078913450785, guid: 4b4e04ce7a9933f43aecf7f3ed9da9cf, type: 3}
+  _burstDeath: {fileID: 4985542078913450785, guid: df6b2ff8aa97a9e4fb35b2a0fe29653f, type: 3}
   _collider: {fileID: 7187537139655989992}
   _soundPlayer: {fileID: 0}
 --- !u!58 &7187537139655989992
