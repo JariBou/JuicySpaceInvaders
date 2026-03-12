@@ -15,7 +15,7 @@
             int sum = 0;
             for (int i = 0; i < h; i++)
             {
-                sum = Primes[i];
+                sum += Primes[i];
             }
 
             return sum;
