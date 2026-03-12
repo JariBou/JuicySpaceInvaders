@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: 0, y: 4, z: 0}
   destroyCollider: BulletLimit
-  state: 0
+  state: 2
   _loopPS: {fileID: 5781709964987027189}
   _impactPSPrefab: {fileID: 4985542078913450785, guid: df6b2ff8aa97a9e4fb35b2a0fe29653f, type: 3}
   _fadeOutPS: {fileID: 4355111109791745207}

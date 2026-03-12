@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using SpaceInvaderTemplate;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Invader : DamageableBase
 {
@@ -47,7 +46,9 @@ public class Invader : DamageableBase
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
+
+        _animator.SetInteger("Invader_Type", Random.Range(0, 3));
     }
 
     public void Initialize(Vector2Int gridIndex)
