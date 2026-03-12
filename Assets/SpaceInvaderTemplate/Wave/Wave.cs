@@ -31,6 +31,7 @@ public class Wave : MonoBehaviour
     // Distance moved when moving downward
     [SerializeField] private float downStep = 1f;
 
+    [SerializeField] private SoundPlayer _postExplosion;
     private Bounds Bounds => new Bounds(transform.position, new Vector3(bounds.x, bounds.y, 1000f));
 
     Move move = Move.Right;
@@ -238,6 +239,11 @@ public class Wave : MonoBehaviour
     float GetRowPosition(int row)
     {
         return Mathf.Lerp(Bounds.min.y, Bounds.max.y, row / (float)(rows - 1));
+    }
+
+    public void PostExplosion()
+    {
+        _postExplosion.PlayOneShotSound();
     }
 
     public void OnDrawGizmos()

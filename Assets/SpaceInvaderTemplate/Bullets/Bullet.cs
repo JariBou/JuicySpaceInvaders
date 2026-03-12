@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
         _rb.linearVelocity = startVelocity;
 
         state = GameManager.GetFeatureState(FeelFeature.BulletApplyStatus) ? state : E_INVADERSTATE.NONE;
-        if (_soundPlayer != null) _soundPlayer.PlaySound();
+        if (_soundPlayer != null) _soundPlayer.PlayOneShotSound();
         if(_burstSpawn != null) Instantiate(_burstSpawn, transform.position, Quaternion.identity);
     }
 

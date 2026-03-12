@@ -1,5 +1,7 @@
 using System;
+using GraphicsLabor.Scripts.Attributes.LaborerAttributes.InspectedAttributes;
 using SpaceInvaderTemplate;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -64,7 +66,8 @@ public class Invader : DamageableBase
 
     private void OnDamageTaken()
     {
-        _damagedSound.PlaySound();
+        _damagedSound.PlayOneShotSound();
+        _animator.SetTrigger("Hit");
     }
 
     public void Initialize(Vector2Int gridIndex)
@@ -93,16 +96,21 @@ public class Invader : DamageableBase
 
     protected override void OnDeath()
     {
-        if(burstDiePoop != null && HasStatus(E_INVADERSTATE.VOMIT)) Instantiate(burstDieVomit, transform.position, Quaternion.identity);
-        if(burstDiePoop != null && HasStatus(E_INVADERSTATE.POOP)) Instantiate(burstDiePoop, transform.position, Quaternion.identity);
+        _animator.SetBool("Death", true);       
+    }
+
+    public void Die()
+    {
+        if (burstDiePoop != null && HasStatus(E_INVADERSTATE.VOMIT)) Instantiate(burstDieVomit, transform.position, Quaternion.identity);
+        if (burstDiePoop != null && HasStatus(E_INVADERSTATE.POOP)) Instantiate(burstDiePoop, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
 
     public void Shoot()
     {
-        if (_shootSound != null && ((_state & E_INVADERSTATE.POOP) > 0)) _poopShootSound.PlaySound();
-        else if (_shootSound != null) _shootSound.PlaySound();
+        if (_shootSound != null && ((_state & E_INVADERSTATE.POOP) > 0)) _poopShootSound.PlayOneShotSound();
+        else if (_shootSound != null) _shootSound.PlayOneShotSound();
 
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
     }

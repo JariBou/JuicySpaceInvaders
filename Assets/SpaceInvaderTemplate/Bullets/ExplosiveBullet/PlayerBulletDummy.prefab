@@ -58,8 +58,8 @@ MonoBehaviour:
   _burstSpawn: {fileID: 4985542078913450785, guid: 73157b69cfeae6843b8755743671b0de, type: 3}
   _collider: {fileID: 7187537139655989992}
   _soundPlayer: {fileID: 8772222043694018804}
-  _indexCountMaximum: 10
-  _indexCountMinimum: 5
+  _indexCountMaximum: 6
+  _indexCountMinimum: 3
   _speed: 4
   _explosionPrefab: {fileID: 1048612964037713849, guid: fa5c58c631ec6164db38fc3dec67f3a4, type: 3}
 --- !u!58 &7187537139655989992

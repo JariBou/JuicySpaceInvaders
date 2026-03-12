@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DummyBullet : Bullet
@@ -47,6 +48,9 @@ public class DummyBullet : Bullet
         _coroutine = StartCoroutine(MoveToPointCoroutine());
         PickRandomEnnemy();
         _positionsList[^1] = _ennemyToTarget.transform.position;
+
+        _soundPlayer.StopSound();
+        _soundPlayer.PlaySoundLoop();
     }
 
     private void Update()
@@ -84,6 +88,8 @@ public class DummyBullet : Bullet
             if (_explosionPrefab)
             {
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+
+                FindAnyObjectByType<Wave>().PostExplosion();
             }
         }
     }

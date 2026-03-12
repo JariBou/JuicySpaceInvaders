@@ -39,7 +39,7 @@ public class Player : DamageableBase
 
     private void OnDamageTaken()
     {
-        _damageTaken.PlaySound();
+        _damageTaken.PlayOneShotSound();
     }
 
     public override void Awake()
@@ -127,7 +127,7 @@ public class Player : DamageableBase
         SoundPlayer soundPlayer = bulletSounds[indexOf];
         if (soundPlayer != null)
         {
-            soundPlayer.PlaySound();
+            soundPlayer.PlayOneShotSound();
         }
 
         lastShootTimestamp = Time.time;

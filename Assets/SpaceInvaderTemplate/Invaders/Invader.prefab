@@ -678,9 +678,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 4724970415690683995}
     m_Modifications:
     - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
+      propertyPath: _clipList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: '_clipList.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 1f5f7b02716bd93498170be288d37880, type: 3}
+      objectReference: {fileID: 8300000, guid: 344935487c2e0ba488abd0cd9b83fd36, type: 3}
     - target: {fileID: 3262198593983406485, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -800,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3443143672028236620, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5256391648655618410, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: m_Name
