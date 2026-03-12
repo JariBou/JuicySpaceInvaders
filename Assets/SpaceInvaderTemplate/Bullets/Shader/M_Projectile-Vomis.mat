@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Projectile-Vomis
-  m_Shader: {fileID: 4800000, guid: 5fef4a3e4afdfca458784ac6f36a6d93, type: 3}
+  m_Shader: {fileID: 4800000, guid: f40a7b01d6492af4ebca427617d29b8f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
