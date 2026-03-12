@@ -55,7 +55,6 @@ public class DummyBullet : Bullet
 
             _positionsList[_positionsList.Count - 1] = _ennemyToTarget.transform.position;
         }
-       
     }
 
     IEnumerator MoveToPointCoroutine()

@@ -14,7 +14,7 @@ public class Player : DamageableBase
     [Header("Shoot")]
     [SerializeField] private List<Bullet> bulletPrefabList = new List<Bullet>();
     [SerializeField] private List<int> bulletsProbabilities = new List<int>();
-    [SerializeField] private List<AudioClip> bulletSounds = new List<AudioClip>();
+    [SerializeField] private List<SoundPlayer> bulletSounds = new List<SoundPlayer>();
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private string collideWithTag = "Untagged";
@@ -22,9 +22,7 @@ public class Player : DamageableBase
     [SerializeField] private float _rotateTime = 0.3f;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource _audioSourceBulletLaunch;
-    [SerializeField] private AudioSource _audioSourceDamageTaken;
-    [SerializeField] private AudioClip _damageTaken;
+    [SerializeField] private SoundPlayer _damageTaken;
 
     private float lastShootTimestamp = Mathf.NegativeInfinity;
     private bool _deathTriggered;
@@ -41,7 +39,7 @@ public class Player : DamageableBase
 
     private void OnDamageTaken()
     {
-        _audioSourceDamageTaken.Play();
+        _damageTaken.PlaySound();
     }
 
     void Update()
@@ -118,10 +116,14 @@ public class Player : DamageableBase
         // prefabs.Shuffle();
 
         int rand = Random.Range(0, prefabs.Count);
-        Instantiate(prefabs[rand], shootAt.position, Quaternion .identity);
+        Instantiate(prefabs[rand], shootAt.position, Quaternion.identity);
 
         int indexOf = bulletPrefabList.IndexOf(prefabs[rand]);
-        if (bulletSounds[indexOf] != null) _audioSourceBulletLaunch.PlayOneShot(bulletSounds[indexOf]);
+        SoundPlayer soundPlayer = bulletSounds[indexOf];
+        if (soundPlayer != null)
+        {
+            soundPlayer.PlaySound();
+        }
 
         lastShootTimestamp = Time.time;
     }

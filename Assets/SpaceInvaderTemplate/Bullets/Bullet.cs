@@ -25,6 +25,9 @@ public class Bullet : MonoBehaviour
     [Header("Collider")]
     [SerializeField] protected CircleCollider2D _collider;
 
+    [Header("Audio")]
+    [SerializeField] protected SoundPlayer _soundPlayer;
+
     protected Rigidbody2D _rb;
     private float waitTimeCollisionActivation = 0.15f;
 
@@ -40,6 +43,7 @@ public class Bullet : MonoBehaviour
         _rb.linearVelocity = startVelocity;
 
         state = GameManager.GetFeatureState(FeelFeature.BulletApplyStatus) ? state : E_INVADERSTATE.NONE;
+        _soundPlayer.PlaySound();
     }
 
     public virtual void Update()
