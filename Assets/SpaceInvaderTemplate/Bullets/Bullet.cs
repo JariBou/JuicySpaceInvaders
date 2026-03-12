@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected ParticleSystem _loopPS;
     [SerializeField] protected GameObject _impactPSPrefab;
     [SerializeField] protected ParticleSystem _fadeOutPS;
+    [SerializeField] protected GameObject _burstSpawn;
 
     [Header("Collider")]
     [SerializeField] protected CircleCollider2D _collider;
@@ -44,6 +45,7 @@ public class Bullet : MonoBehaviour
 
         state = GameManager.GetFeatureState(FeelFeature.BulletApplyStatus) ? state : E_INVADERSTATE.NONE;
         _soundPlayer.PlaySound();
+        if(_burstSpawn != null) Instantiate(_burstSpawn, transform.position, Quaternion.identity);
     }
 
     public virtual void Update()

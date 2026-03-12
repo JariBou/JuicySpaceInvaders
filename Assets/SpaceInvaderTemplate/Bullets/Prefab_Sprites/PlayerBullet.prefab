@@ -50,11 +50,13 @@ MonoBehaviour:
   startVelocity: {x: 0, y: 4, z: 0}
   destroyCollider: BulletLimit
   state: 2
+  _bulletType: 2
   _loopPS: {fileID: 5781709964987027189}
   _impactPSPrefab: {fileID: 4985542078913450785, guid: df6b2ff8aa97a9e4fb35b2a0fe29653f, type: 3}
   _fadeOutPS: {fileID: 4355111109791745207}
+  _burstSpawn: {fileID: 4985542078913450785, guid: 4b4e04ce7a9933f43aecf7f3ed9da9cf, type: 3}
   _collider: {fileID: 7187537139655989992}
-  _bulletType: 2
+  _soundPlayer: {fileID: 0}
 --- !u!58 &7187537139655989992
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -126,9 +128,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7448292063120907944}
     m_Modifications:
+    - target: {fileID: 1229348178837435238, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: lengthInSec
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229348178837435238, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229348178837435238, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229348178837435238, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229348178837435238, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229348178837435238, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229348178837435238, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229348178837435238, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 1999735828162905711, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
       propertyPath: m_Name
       value: GameObject_Projectile-Vomis
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026772778520248599, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026772778520248599, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6229665875191708228, guid: c4f696ba9e0b35f42a0cb90a2505ee99, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
