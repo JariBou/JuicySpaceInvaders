@@ -120,9 +120,10 @@ public class Player : DamageableBase
 
         // prefabs.Shuffle();
 
-        Instantiate(prefabs[Random.Range(0, prefabs.Count)], shootAt.position, Quaternion.identity);
+        int rand = Random.Range(0, prefabs.Count);
+        Instantiate(prefabs[rand], shootAt.position, Quaternion.identity);
         
-        if (bulletSounds[randomBulletIndex] != null) _audioSourceBulletLaunch.PlayOneShot(bulletSounds[randomBulletIndex]);
+        if (bulletSounds[rand] != null) _audioSourceBulletLaunch.PlayOneShot(bulletSounds[rand]);
 
         lastShootTimestamp = Time.time;
     }
