@@ -1,4 +1,5 @@
 using System;
+using GraphicsLabor.Scripts.Attributes.LaborerAttributes.InspectedAttributes;
 using SpaceInvaderTemplate;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -24,6 +25,7 @@ public class Invader : DamageableBase
     [SerializeField] private SoundPlayer _shootSound;
     [SerializeField] private SoundPlayer _poopShootSound;
     [SerializeField] private SoundPlayer _damagedSound;
+    [SerializeField] private SoundPlayer _transiCacaSound;
 
     public Vector2Int GridIndex { get; private set; }
 
@@ -63,7 +65,7 @@ public class Invader : DamageableBase
 
     private void OnDamageTaken()
     {
-        _damagedSound.PlaySound();
+        _damagedSound.PlayOneShotSound();
     }
 
     public void Initialize(Vector2Int gridIndex)
@@ -100,8 +102,8 @@ public class Invader : DamageableBase
 
     public void Shoot()
     {
-        if (_shootSound != null && ((_state & E_INVADERSTATE.POOP) > 0)) _poopShootSound.PlaySound();
-        else if (_shootSound != null) _shootSound.PlaySound();
+        if (_shootSound != null && ((_state & E_INVADERSTATE.POOP) > 0)) _poopShootSound.PlayOneShotSound();
+        else if (_shootSound != null) _shootSound.PlayOneShotSound();
 
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
     }
@@ -109,6 +111,8 @@ public class Invader : DamageableBase
     public void ApplyStatus(E_INVADERSTATE status)
     {
         State |= status;
+
+        if (status == E_INVADERSTATE.POOP) _transiCacaSound.PlayOneShotSound();
     }
 
     public bool HasStatus(E_INVADERSTATE status)

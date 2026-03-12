@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DummyBullet : Bullet
@@ -47,6 +48,9 @@ public class DummyBullet : Bullet
         _coroutine = StartCoroutine(MoveToPointCoroutine());
         PickRandomEnnemy();
         _positionsList[^1] = _ennemyToTarget.transform.position;
+
+        _soundPlayer.StopSound();
+        _soundPlayer.PlaySound();
     }
 
     private void Update()

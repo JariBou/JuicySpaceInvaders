@@ -12,7 +12,7 @@ public class WeakBullet : Bullet
     private void Start() 
     { 
         _rb.gravityScale = 1.0f;
-        _upSound.PlaySound();
+        _upSound.PlayOneShotSound();
     }
 
     public override void Update()
@@ -24,7 +24,7 @@ public class WeakBullet : Bullet
 
             tag = "Untagged";
             _upSound.StopSound();
-            _downSound.PlaySound();
+            _downSound.PlayOneShotSound();
         }
     }
 }

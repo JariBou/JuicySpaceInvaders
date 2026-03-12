@@ -7,7 +7,7 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private List<AudioClip> _clipList = new List<AudioClip>();
 
-    public void PlaySound()
+    public void PlayOneShotSound()
     {
         int randomIndex = Random.Range(0, _clipList.Count - 1);
 
@@ -18,5 +18,12 @@ public class SoundPlayer : MonoBehaviour
     public void StopSound()
     {
         _audioSource.Stop();
+    }
+
+    public void PlaySound()
+    {
+        _audioSource.loop = true;
+        _audioSource.clip = _clipList[0];
+        _audioSource.Play();
     }
 }

@@ -39,7 +39,7 @@ public class Player : DamageableBase
 
     private void OnDamageTaken()
     {
-        _damageTaken.PlaySound();
+        _damageTaken.PlayOneShotSound();
     }
 
     void Update()
@@ -122,7 +122,7 @@ public class Player : DamageableBase
         SoundPlayer soundPlayer = bulletSounds[indexOf];
         if (soundPlayer != null)
         {
-            soundPlayer.PlaySound();
+            soundPlayer.PlayOneShotSound();
         }
 
         lastShootTimestamp = Time.time;
