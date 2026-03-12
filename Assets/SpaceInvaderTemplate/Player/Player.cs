@@ -17,14 +17,35 @@ public class Player : DamageableBase
     [Header("Shoot")]
     [SerializeField] private List<Bullet> bulletPrefabList = new List<Bullet>();
     [SerializeField] private List<int> bulletsProbabilities = new List<int>();
+    [SerializeField] private List<AudioClip> bulletSounds = new List<AudioClip>();
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private string collideWithTag = "Untagged";
     [SerializeField] private float _rotateAngle = 30f;
     [SerializeField] private float _rotateTime = 0.3f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _audioSourceBulletLaunch;
+    [SerializeField] private AudioSource _audioSourceDamageTaken;
+    [SerializeField] private AudioClip _damageTaken;
+
     private float lastShootTimestamp = Mathf.NegativeInfinity;
     private bool _deathTriggered;
+
+    private void OnEnable()
+    {
+        DamageTaken += OnDamageTaken;
+    }
+
+    private void OnDisable()
+    {
+        DamageTaken -= OnDamageTaken;
+    }
+
+    private void OnDamageTaken()
+    {
+        _audioSourceDamageTaken.Play();
+    }
 
     void Update()
     {
@@ -100,6 +121,9 @@ public class Player : DamageableBase
         // prefabs.Shuffle();
 
         Instantiate(prefabs[Random.Range(0, prefabs.Count)], shootAt.position, Quaternion.identity);
+        
+        if (bulletSounds[randomBulletIndex] != null) _audioSourceBulletLaunch.PlayOneShot(bulletSounds[randomBulletIndex]);
+
         lastShootTimestamp = Time.time;
     }
 
@@ -135,5 +159,9 @@ public class Player : DamageableBase
         while (bulletsProbabilities.Count < bulletPrefabList.Count) bulletsProbabilities.Add(0);
 
         while (bulletsProbabilities.Count > bulletPrefabList.Count) bulletsProbabilities.RemoveAt(bulletsProbabilities.Count - 1);
+
+        while (bulletSounds.Count < bulletPrefabList.Count) bulletSounds.Add(null);
+
+        while (bulletSounds.Count > bulletPrefabList.Count) bulletSounds.RemoveAt(bulletsProbabilities.Count - 1);
     }
 }
