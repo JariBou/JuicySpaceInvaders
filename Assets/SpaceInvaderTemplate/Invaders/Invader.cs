@@ -47,8 +47,8 @@ public class Invader : DamageableBase
             // -> 1 & 1 = 1
             // -> 0 & 1 = 0
             // -> 0 & 0 = 0
-            _animator.SetBool(VomitAnimName, (_state & E_INVADERSTATE.VOMIT) > 0);
-            _animator.SetBool(PoopAnimName, (_state & E_INVADERSTATE.POOP) > 0);
+            _animator.SetBool(VomitAnimName, HasStatus(E_INVADERSTATE.VOMIT));
+            _animator.SetBool(PoopAnimName, HasStatus(E_INVADERSTATE.POOP));
         }
     }
 
@@ -92,8 +92,8 @@ public class Invader : DamageableBase
 
     protected override void OnDeath()
     {
-        if(burstDiePoop != null && ((_state & E_INVADERSTATE.VOMIT) > 0)) Instantiate(burstDieVomit, transform.position, Quaternion.identity);
-        if(burstDiePoop != null && ((_state & E_INVADERSTATE.POOP) > 0)) Instantiate(burstDiePoop, transform.position, Quaternion.identity);
+        if(burstDiePoop != null && HasStatus(E_INVADERSTATE.VOMIT)) Instantiate(burstDieVomit, transform.position, Quaternion.identity);
+        if(burstDiePoop != null && HasStatus(E_INVADERSTATE.POOP)) Instantiate(burstDiePoop, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
@@ -104,5 +104,15 @@ public class Invader : DamageableBase
         else if (_shootSound != null) _shootSound.PlaySound();
 
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+    }
+
+    public void ApplyStatus(E_INVADERSTATE status)
+    {
+        State |= status;
+    }
+
+    public bool HasStatus(E_INVADERSTATE status)
+    {
+        return (_state & status) > 0;
     }
 }

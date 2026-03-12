@@ -61,6 +61,7 @@ MonoBehaviour:
   _indexCountMaximum: 10
   _indexCountMinimum: 5
   _speed: 4
+  _explosionPrefab: {fileID: 1048612964037713849, guid: fa5c58c631ec6164db38fc3dec67f3a4, type: 3}
 --- !u!58 &7187537139655989992
 CircleCollider2D:
   m_ObjectHideFlags: 0

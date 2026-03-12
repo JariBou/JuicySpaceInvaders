@@ -9,6 +9,8 @@ public class DummyBullet : Bullet
     [SerializeField] private int _indexCountMinimum;
     [SerializeField] private float _speed;
 
+    [SerializeField] private GameObject _explosionPrefab;
+
     private List<Vector2> _positionsList = new List<Vector2>();
 
     private Coroutine _coroutine;
@@ -30,7 +32,7 @@ public class DummyBullet : Bullet
 
         for(int i = 0; i < randomIndexCount; i++)
         {
-            Vector2 randomPos = new Vector2(Random.Range(gameBounds[0].x, gameBounds[2].x), Random.Range(gameBounds[0].y, gameBounds[1].y));
+            Vector2 randomPos = new(Random.Range(gameBounds[0].x, gameBounds[2].x), Random.Range(gameBounds[0].y, gameBounds[1].y));
 
             while(!GameManager.Instance.IsInBounds(randomPos))
             {
@@ -44,7 +46,7 @@ public class DummyBullet : Bullet
 
         _coroutine = StartCoroutine(MoveToPointCoroutine());
         PickRandomEnnemy();
-        _positionsList[_positionsList.Count - 1] = _ennemyToTarget.transform.position;
+        _positionsList[^1] = _ennemyToTarget.transform.position;
     }
 
     private void Update()
@@ -53,7 +55,7 @@ public class DummyBullet : Bullet
         {
             if (_ennemyToTarget == null) PickRandomEnnemy();
 
-            _positionsList[_positionsList.Count - 1] = _ennemyToTarget.transform.position;
+            _positionsList[^1] = _ennemyToTarget.transform.position;
         }
     }
 
@@ -65,7 +67,7 @@ public class DummyBullet : Bullet
             direction.Normalize();
             startVelocity = new Vector3(direction.x * _speed, direction.y * _speed, direction.z * _speed);
             _rb.linearVelocity = startVelocity;
-            Vector3.Lerp(transform.position, (Vector3)_positionsList[0], Time.deltaTime * (startVelocity.x + startVelocity.y));
+            Vector3.Lerp(transform.position, _positionsList[0], Time.deltaTime * (startVelocity.x + startVelocity.y));
             yield return new WaitForEndOfFrame();
         }
 
@@ -79,6 +81,10 @@ public class DummyBullet : Bullet
         else
         {
             _collider.enabled = true;
+            if (_explosionPrefab)
+            {
+                Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            }
         }
     }
 
