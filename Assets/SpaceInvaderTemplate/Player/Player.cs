@@ -42,6 +42,11 @@ public class Player : DamageableBase
         _damageTaken.PlaySound();
     }
 
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     void Update()
     {
         UpdateMovement();

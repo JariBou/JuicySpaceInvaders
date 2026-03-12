@@ -52,8 +52,9 @@ public class Invader : DamageableBase
         }
     }
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         DamageTaken += OnDamageTaken;
 
         _animator = GetComponentInChildren<Animator>();
