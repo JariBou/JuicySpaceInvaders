@@ -54,6 +54,7 @@ MonoBehaviour:
   _impactPSPrefab: {fileID: 4985542078913450785, guid: 4b4e04ce7a9933f43aecf7f3ed9da9cf, type: 3}
   _fadeOutPS: {fileID: 1303593667065274515}
   _collider: {fileID: 7187537139655989992}
+  _bulletType: 1
   _indexCountMaximum: 10
   _indexCountMinimum: 5
   _speed: 4

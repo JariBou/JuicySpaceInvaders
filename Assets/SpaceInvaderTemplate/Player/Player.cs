@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using SpaceInvaderTemplate;
-using SpaceInvaderTemplate.Utils;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -121,9 +118,10 @@ public class Player : DamageableBase
         // prefabs.Shuffle();
 
         int rand = Random.Range(0, prefabs.Count);
-        Instantiate(prefabs[rand], shootAt.position, Quaternion.identity);
-        
-        if (bulletSounds[rand] != null) _audioSourceBulletLaunch.PlayOneShot(bulletSounds[rand]);
+        Instantiate(prefabs[rand], shootAt.position, Quaternion .identity);
+
+        int indexOf = bulletPrefabList.IndexOf(prefabs[rand]);
+        if (bulletSounds[indexOf] != null) _audioSourceBulletLaunch.PlayOneShot(bulletSounds[indexOf]);
 
         lastShootTimestamp = Time.time;
     }
@@ -135,7 +133,7 @@ public class Player : DamageableBase
             case Bullet.BType.Weak:
                 return GameManager.GetFeatureState(FeelFeature.BulletType_Weak);
             case Bullet.BType.Explosive:
-                return GameManager.GetFeatureState(FeelFeature.BulletType_Explosion);
+                return GameManager.GetFeatureState(FeelFeature.BulletType_Explosive);
             case Bullet.BType.Vomit:
                 return true;
             default:
@@ -150,7 +148,7 @@ public class Player : DamageableBase
         TakeDamage(1);
     }
 
-    public void OnDeath()
+    protected override void OnDeath()
     {
         GameManager.Instance.PlayGameOver();
     }

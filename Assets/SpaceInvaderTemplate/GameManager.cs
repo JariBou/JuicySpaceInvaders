@@ -6,7 +6,7 @@ using UnityEngine;
 public enum FeelFeature
 {
     BulletApplyStatus,
-    BulletType_Explosion,
+    BulletType_Explosive,
     BulletType_Weak,
 }
 
@@ -45,6 +45,14 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             FeelFeatures[FeelFeature.BulletApplyStatus] = !FeelFeatures[FeelFeature.BulletApplyStatus];
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            FeelFeatures[FeelFeature.BulletType_Weak] = !FeelFeatures[FeelFeature.BulletType_Weak];
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            FeelFeatures[FeelFeature.BulletType_Explosive] = !FeelFeatures[FeelFeature.BulletType_Explosive];
         }
     }
 

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -16,6 +15,7 @@ public class Bullet : MonoBehaviour
     [Header("Bullet type")]
     [SerializeField]
     private E_INVADERSTATE state;
+    [SerializeField] private BType _bulletType;
 
     [Header("Particle systems")]
     [SerializeField] protected ParticleSystem _loopPS;
@@ -26,11 +26,10 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected CircleCollider2D _collider;
 
     protected Rigidbody2D _rb;
-    private float waitTimeCollisionActivation = 0.25f;
+    private float waitTimeCollisionActivation = 0.15f;
 
     public E_INVADERSTATE StatusType => state;
     
-    [SerializeField] private BType _bulletType;
     public BType BulletType => _bulletType;
 
 
@@ -43,7 +42,7 @@ public class Bullet : MonoBehaviour
         state = GameManager.GetFeatureState(FeelFeature.BulletApplyStatus) ? state : E_INVADERSTATE.NONE;
     }
 
-    private void Update()
+    public virtual void Update()
     {
         waitTimeCollisionActivation -= Time.deltaTime;
         if (waitTimeCollisionActivation < 0) _collider.enabled = true;
@@ -53,7 +52,10 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Untagged"))
         {
-            _loopPS.Stop();
+            if (_loopPS != null)
+            {
+                _loopPS.Stop();
+            }
 
             Vector3 dir = collision.transform.position - transform.position;
 
