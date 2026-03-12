@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: '_clipList.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: ba12d0d2a51627143b709abee977e3c3, type: 3}
+      objectReference: {fileID: 8300000, guid: 4fc2180f0dfe6e1428fc2826344e833c, type: 3}
     - target: {fileID: 3262198593983406485, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -212,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 1987335650637863592, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: '_clipList.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 4fc2180f0dfe6e1428fc2826344e833c, type: 3}
+      objectReference: {fileID: 8300000, guid: ba12d0d2a51627143b709abee977e3c3, type: 3}
     - target: {fileID: 3262198593983406485, guid: 65cec388fab33c24ca394649f2e00cdd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

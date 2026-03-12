@@ -14,4 +14,9 @@ public class SoundPlayer : MonoBehaviour
         SoundsHelper.RandomPitch(_audioSource);
         _audioSource.PlayOneShot(_clipList[randomIndex]);
     }
+
+    public void StopSound()
+    {
+        _audioSource.Stop();
+    }
 }
