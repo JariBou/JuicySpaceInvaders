@@ -10,7 +10,7 @@ public class ChangeScene : MonoBehaviour
     
     private void Start()
     {
-        _asyncOperation = SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+        _asyncOperation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
         _asyncOperation.allowSceneActivation = false;
 
         _videoPLayer.loopPointReached += OnVideoEnd;
